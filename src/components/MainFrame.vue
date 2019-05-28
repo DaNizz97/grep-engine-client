@@ -17,7 +17,7 @@
 
     <v-navigation-drawer v-model="drawer" fixed left app width="400px">
       <v-list two-line subheader>
-        <v-subheader>All documents</v-subheader>
+        <v-subheader>Files Tree</v-subheader>
         <div class="layer">
           <files-view></files-view>
         </div>
@@ -25,23 +25,26 @@
     </v-navigation-drawer>
 
     <v-content>
-      афьююююю......... (ветер шумит)
+      <!--афьююююю......... (ветер шумит)-->
+      <grep-output></grep-output>
     </v-content>
 
     <v-footer color="blue" class="white--text" app>
-      <span>Daniil Nizovkin</span>
+      <span class="ml-1">Daniil Nizovkin</span>
       <v-spacer></v-spacer>
-      <span>&copy; 2019</span>
+      <span class="mr-1">&copy; 2019</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
     import FilesView from './FilesView.vue';
+    import GrepOutput from './GrepOutput.vue';
 
     export default {
         components: {
-            FilesView
+            FilesView,
+            GrepOutput
         },
         name: "MainFrame",
         data() {
