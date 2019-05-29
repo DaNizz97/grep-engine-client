@@ -1,6 +1,8 @@
 <template>
-  <div class="line">
-    {{line}}
+  <div>
+    <span class="line" v-for="line in lines">
+      <span :class="{highlighted: line === matchedWord}">{{line}}</span>
+    </span>
     <v-divider></v-divider>
   </div>
 </template>
@@ -9,7 +11,7 @@
     export default {
         name: "GrepLine",
         props: {
-            line: String,
+            lines: Array,
             matchedWord: String
         },
         data() {
@@ -24,5 +26,10 @@
     font-size: 14px;
     font-family: Verdana;
     width: 100%;
+  }
+  .highlighted {
+    color: red;
+    font-weight:bold;
+    font-style: italic;
   }
 </style>

@@ -20,7 +20,7 @@
         <v-subheader>Files Tree</v-subheader>
         <div class="layer">
           <files-view
-              @searchByFile="www"
+              @searchByFile="searchByFile"
           ></files-view>
         </div>
       </v-list>
@@ -57,7 +57,7 @@
             }
         },
         methods: {
-            www(path) {
+            searchByFile(path) {
               this.path = path
             }
         }
