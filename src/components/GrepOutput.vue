@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="output">
     <ol>
       <li v-for="ss in s">
         <grep-line :line="ss"></grep-line>
@@ -19,7 +19,7 @@
 
         name: "GrepOutput",
         props: {
-          path: String
+            path: String
         },
 
         data() {
@@ -29,16 +29,19 @@
         },
         methods: {
             getData() {
-                this.$http.post('http://localhost:8080/search', {
-                    fileName: '/home/da-nizz/WebstormProjects/grep-engine-client/src/components/' + this.path,
-                    pattern: 'console',
-                    maxLinesCount: 100,
-                    revert: true
-                }).then(response => {
-                    this.s = response.body.split('\n');
-                }, response => {
-                    console.log(response.status, response.body.message)
-                })
+                if (this.path) {
+                    this.$http.post('http://localhost:8080/search', {
+                        fileName: this.path,
+                        pattern: 'console',
+                        maxLinesCount: 20,
+                        revert: true
+                    }).then(response => {
+                        this.s = response.body.split('\n');
+                        this.s.pop()
+                    }, response => {
+                        console.log(response.status, response.body.message)
+                    })
+                }
             }
         },
         watch: {
@@ -50,5 +53,10 @@
 </script>
 
 <style scoped>
+  .output {
+    margin: 15px;
+    font-family: Verdana;
+    font-size: 14px;
+  }
 
 </style>

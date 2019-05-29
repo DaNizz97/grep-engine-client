@@ -26,16 +26,16 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-content>
+    <v-content style="overflow: scroll; overflow-y: hidden">
       <grep-output
           :path="path"
       ></grep-output>
     </v-content>
 
     <v-footer color="blue-grey darken-1" class="white--text" app>
-      <span class="ml-1">Daniil Nizovkin</span>
+      <span class="ml-2">Daniil Nizovkin</span>
       <v-spacer></v-spacer>
-      <span class="mr-1">&copy; 2019</span>
+      <span class="mr-2">&copy; 2019</span>
     </v-footer>
   </v-app>
 </template>

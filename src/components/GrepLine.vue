@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="line">
     {{line}}
+    <v-divider></v-divider>
   </div>
 </template>
 
@@ -18,5 +19,10 @@
 </script>
 
 <style scoped>
-
+  .line {
+    margin: 10px;
+    font-size: 14px;
+    font-family: Verdana;
+    width: 100%;
+  }
 </style>

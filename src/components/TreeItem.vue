@@ -3,8 +3,7 @@
     <div
         class="item2"
         :class="{bold: isFolder}"
-        @click="toggle(); searchByFile()"
-        @dblclick="makeFolder">
+        @click="toggle(); searchByFile()">
       <i v-if="isFolder && isOpen" class="material-icons-two-tone">folder</i>
       <i v-if="isFolder && !isOpen" class="material-icons">folder</i>
       <i v-if="!isFolder" class="material-icons-two-tone">file_copy</i>
@@ -45,15 +44,9 @@
                     this.isOpen = !this.isOpen
                 }
             },
-            makeFolder: function () {
-                if (!this.isFolder) {
-                    this.$emit('make-folder', this.item);
-                    this.isOpen = true
-                }
-            },
             searchByFile() {
                 if (!this.isFolder) {
-                    this.$emit('searchByFile', this.item.name)
+                    this.$emit('searchByFile', this.item.file)
                 }
             }
         }
@@ -81,3 +74,4 @@
     background-color: aliceblue;
   }
 </style>
+<!--consoleconsoleconsoleconsoleconsoleconsoleconsoleco-->
