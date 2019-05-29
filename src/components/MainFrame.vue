@@ -2,7 +2,7 @@
   <v-app id="inspire">
 
     <v-toolbar
-        color="blue"
+        color="blue-grey darken-1"
         dark
         fixed
         app
@@ -19,17 +19,20 @@
       <v-list two-line subheader>
         <v-subheader>Files Tree</v-subheader>
         <div class="layer">
-          <files-view></files-view>
+          <files-view
+              @searchByFile="www"
+          ></files-view>
         </div>
       </v-list>
     </v-navigation-drawer>
 
     <v-content>
-      <!--афьююююю......... (ветер шумит)-->
-      <grep-output></grep-output>
+      <grep-output
+          :path="path"
+      ></grep-output>
     </v-content>
 
-    <v-footer color="blue" class="white--text" app>
+    <v-footer color="blue-grey darken-1" class="white--text" app>
       <span class="ml-1">Daniil Nizovkin</span>
       <v-spacer></v-spacer>
       <span class="mr-1">&copy; 2019</span>
@@ -49,7 +52,13 @@
         name: "MainFrame",
         data() {
             return {
-                drawer: true
+                drawer: true,
+                path: ''
+            }
+        },
+        methods: {
+            www(path) {
+              this.path = path
             }
         }
     }

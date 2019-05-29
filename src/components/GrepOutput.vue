@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-btn color="indigo" v-on:click="getData">Get</v-btn>
     <ol>
       <li v-for="ss in s">
         <grep-line :line="ss"></grep-line>
@@ -17,7 +16,12 @@
         comments: {
             GrepLine
         },
+
         name: "GrepOutput",
+        props: {
+          path: String
+        },
+
         data() {
             return {
                 s: []
@@ -26,20 +30,21 @@
         methods: {
             getData() {
                 this.$http.post('http://localhost:8080/search', {
-                    fileName: '/home/da-nizz/WebstormProjects/grep-engine-client/.gitignore',
-                    pattern: '*',
+                    fileName: '/home/da-nizz/WebstormProjects/grep-engine-client/src/components/' + this.path,
+                    pattern: 'console',
                     maxLinesCount: 100,
                     revert: true
                 }).then(response => {
                     this.s = response.body.split('\n');
-                    console.log(this.s);
                 }, response => {
                     console.log(response.status, response.body.message)
                 })
             }
         },
-        created() {
-
+        watch: {
+            path: function () {
+                this.getData();
+            }
         }
     }
 </script>

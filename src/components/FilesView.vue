@@ -16,6 +16,7 @@
       <tree-item
           class="item"
           :item="treeData"
+          @searchByFile="searchByFile"
       ></tree-item>
     </ul>
     <p v-if="isError" class="red--text"> {{ errMessage }}</p>
@@ -55,7 +56,11 @@
                         this.errMessage = response.body.message;
                     }
                 )
+            },
+            searchByFile(path) {
+                this.$emit('searchByFile', path)
             }
+
         }
     }
 </script>

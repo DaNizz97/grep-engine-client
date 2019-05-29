@@ -3,7 +3,7 @@
     <div
         class="item2"
         :class="{bold: isFolder}"
-        @click="toggle(); ww();"
+        @click="toggle(); searchByFile()"
         @dblclick="makeFolder">
       <i v-if="isFolder && isOpen" class="material-icons-two-tone">folder</i>
       <i v-if="isFolder && !isOpen" class="material-icons">folder</i>
@@ -16,6 +16,7 @@
           v-for="(child, index) in item.children"
           :key="index"
           :item="child"
+          @searchByFile="$emit('searchByFile', $event)"
       ></tree-item>
     </ul>
   </li>
@@ -46,13 +47,13 @@
             },
             makeFolder: function () {
                 if (!this.isFolder) {
-                    this.$emit('make-folder', this.item)
+                    this.$emit('make-folder', this.item);
                     this.isOpen = true
                 }
             },
-            ww() {
+            searchByFile() {
                 if (!this.isFolder) {
-
+                    this.$emit('searchByFile', this.item.name)
                 }
             }
         }
