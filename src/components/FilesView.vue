@@ -35,7 +35,7 @@
             return {
                 treeData: {},
                 path: '',
-                postfix: '',
+                postfix: '.log',
                 isError: false,
                 errMessage: ''
             }

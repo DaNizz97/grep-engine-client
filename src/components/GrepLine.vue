@@ -16,6 +16,13 @@
         },
         data() {
             return {}
+        },
+        methods: {
+            checking() {
+                if (typeof(this.lines) == 'string') {
+
+                }
+            }
         }
     }
 </script>

@@ -12,7 +12,10 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Log viewer</v-toolbar-title>
       <v-spacer></v-spacer>
-
+      <v-btn fab small outline
+             @click="isSettingsVisible = !isSettingsVisible">
+        <v-icon dark>settings</v-icon>
+      </v-btn>
     </v-toolbar>
 
     <v-navigation-drawer v-model="drawer" fixed left app width="400px">
@@ -29,6 +32,7 @@
     <v-content style="overflow: scroll; overflow-y: hidden">
       <grep-output
           :path="path"
+          :is-visible="isSettingsVisible"
       ></grep-output>
     </v-content>
 
@@ -53,12 +57,13 @@
         data() {
             return {
                 drawer: true,
+                isSettingsVisible: true,
                 path: ''
             }
         },
         methods: {
             searchByFile(path) {
-              this.path = path
+                this.path = path
             }
         }
     }
