@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <span class="line" v-for="line in lines">
+  <div class="line">
+    <span v-for="line in lines">
       <span :class="{highlighted: line === matchedWord}">{{line}}</span>
     </span>
     <v-divider></v-divider>
@@ -29,7 +29,7 @@
 
 <style scoped>
   .line {
-    margin: 10px;
+    margin: 15px;
     font-size: 14px;
     font-family: Verdana;
     width: 100%;

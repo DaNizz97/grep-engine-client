@@ -76,6 +76,5 @@
     width: 400px;
     min-height: 100%;
     padding: 5px;
-    /*border: solid 1px black; */
   }
 </style>

@@ -1,33 +1,45 @@
 <template>
   <div>
     <div class="settings">
-      <v-container v-if="!isVisible">
+      <v-container v-if="isVisible">
         <v-layout row wrap>
 
-          <v-flex xs12 sm6>
+          <v-flex xs12 sm5>
             <v-text-field
                 v-model="pattern"
                 label="Pattern"
                 outline
+                class="mr-3"
             ></v-text-field>
           </v-flex>
 
-          <v-flex xs12 sm6>
+          <v-flex xs12 sm5>
             <v-text-field
-                v-model="linesMaxCount"
+                v-model="maxLinesCount"
                 label="Max count of lines"
                 outline
+                class="ml-3 mr-3"
             ></v-text-field>
           </v-flex>
-
+          <v-flex xs 12 sm2>
+            <v-btn
+                outline
+                large
+                class="ml-3"
+                @click="saveSettings"
+            >save
+            </v-btn>
+          </v-flex>
         </v-layout>
       </v-container>
     </div>
     <div class="output">
       <ol>
         <li v-for="ss in matchedLines">
-          <grep-line :lines="ss"
-                     :matched-word="pattern"></grep-line>
+          <grep-line
+              :lines="ss"
+              :matched-word="pattern"
+          ></grep-line>
         </li>
       </ol>
     </div>
@@ -53,16 +65,20 @@
             return {
                 matchedLines: [],
                 splittedLine: [],
-                pattern: ''
+                pattern: '',
+                maxLinesCount: 100
             }
         },
         methods: {
             getData() {
+                if (this.maxLinesCount == null || this.maxLinesCount <= 0) {
+                    this.maxLinesCount = 50;
+                }
                 if (this.path) {
                     this.$http.post('http://localhost:8080/search', {
                         fileName: this.path,
                         pattern: this.pattern,
-                        maxLinesCount: 20,
+                        maxLinesCount: this.maxLinesCount,
                         revert: true
                     }).then(response => {
                         this.matchedLines = response.body.split('\n');
@@ -78,6 +94,10 @@
                     })
                 }
             },
+            saveSettings() {
+                if (this.path)
+                    this.getData()
+            }
         },
         watch: {
             path: function () {
