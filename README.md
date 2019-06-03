@@ -1,5 +1,6 @@
 # grep-engine-client
-
+## Overview
+![](./Example.gif)
 ## Project setup
 ```
 npm install
