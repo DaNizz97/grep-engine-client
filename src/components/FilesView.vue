@@ -16,7 +16,6 @@
       <tree-item
           class="item"
           :item="treeData"
-          :highlightedItem="highlightedItem"
           @searchByFile="searchByFile"
           @highlightOpenedFile="highlightOpenedFile"
       ></tree-item>
@@ -36,8 +35,8 @@
         data() {
             return {
                 treeData: {},
-                path: '',
-                postfix: '.log',
+                path: '/home/da-nizz/WebstormProjects/grep-engine-client/src',
+                postfix: '',
                 isError: false,
                 errMessage: '',
                 highlightedItem: {}
@@ -65,8 +64,10 @@
 
             },
             highlightOpenedFile(item) {
+                // console.log(item);
+                // console.log(this.highlightedItem);
+                this.highlightedItem.isHighlighted = false;
                 this.highlightedItem = item;
-                this.highlightedItem.isHighlighted = true
             }
         }
     }

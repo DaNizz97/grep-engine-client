@@ -2,7 +2,7 @@
   <li>
     <div
         class="item2"
-        :class="{fileOpened: isFileOpen}"
+        :class="{fileOpened: item.isHighlighted}"
         @click="toggle(); searchByFile(); highlightOpenedFile();">
       <i v-if="isFolder && isOpen" class="material-icons-two-tone">folder</i>
       <i v-if="isFolder && !isOpen" class="material-icons">folder</i>
@@ -27,12 +27,10 @@
         name: "TreeItem",
         props: {
             item: Object,
-            highlightedItem: Object
         },
         data: function () {
             return {
                 isOpen: false,
-                isFileOpen: false,
                 isPrevFileOpen: false
             }
         },
@@ -40,6 +38,11 @@
             isFolder: function () {
                 return this.item.children &&
                     this.item.children.length
+            },
+        },
+        watch: {
+            item: function (newItem, oldItem) {
+                console.log(newItem)
             }
         },
         methods: {
@@ -54,19 +57,13 @@
                 }
             },
             highlightOpenedFile() {
-                //TODO: implement canceling the highlighting after opening another file
                 if (!this.isFolder) {
-                    // this.isFileOpen = !this.isFileOpen;
+                    this.isPrevFileOpen = !this.isPrevFileOpen
                     this.item.isHighlighted = true;
                     this.$emit('highlightOpenedFile', this.item)
                 }
             },
         },
-        watch: {
-            highlightedItem: function() {
-                console.log(this.highlightedItem)
-            }
-        }
     }
 </script>
 
