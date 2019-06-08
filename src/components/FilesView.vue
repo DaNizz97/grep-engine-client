@@ -16,7 +16,9 @@
       <tree-item
           class="item"
           :item="treeData"
+          :highlightedItem="highlightedItem"
           @searchByFile="searchByFile"
+          @highlightOpenedFile="highlightOpenedFile"
       ></tree-item>
     </ul>
     <p v-if="isError" class="red--text"> {{ errMessage }}</p>
@@ -37,7 +39,8 @@
                 path: '',
                 postfix: '.log',
                 isError: false,
-                errMessage: ''
+                errMessage: '',
+                highlightedItem: {}
             }
         },
         created() {
@@ -59,8 +62,12 @@
             },
             searchByFile(path) {
                 this.$emit('searchByFile', path)
-            }
 
+            },
+            highlightOpenedFile(item) {
+                this.highlightedItem = item;
+                this.highlightedItem.isHighlighted = true
+            }
         }
     }
 </script>

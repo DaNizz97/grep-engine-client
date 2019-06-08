@@ -16,6 +16,7 @@
           :key="index"
           :item="child"
           @searchByFile="$emit('searchByFile', $event)"
+          @highlightOpenedFile="$emit('highlightOpenedFile', $event)"
       ></tree-item>
     </ul>
   </li>
@@ -25,7 +26,8 @@
     export default {
         name: "TreeItem",
         props: {
-            item: Object
+            item: Object,
+            highlightedItem: Object
         },
         data: function () {
             return {
@@ -54,8 +56,15 @@
             highlightOpenedFile() {
                 //TODO: implement canceling the highlighting after opening another file
                 if (!this.isFolder) {
-                    this.isFileOpen = true;
+                    // this.isFileOpen = !this.isFileOpen;
+                    this.item.isHighlighted = true;
+                    this.$emit('highlightOpenedFile', this.item)
                 }
+            },
+        },
+        watch: {
+            highlightedItem: function() {
+                console.log(this.highlightedItem)
             }
         }
     }
