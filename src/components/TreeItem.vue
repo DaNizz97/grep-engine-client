@@ -41,8 +41,8 @@
             },
         },
         watch: {
-            item: function (newItem, oldItem) {
-                console.log(newItem)
+            item: function (newItem, old) {
+                this.item = newItem
             }
         },
         methods: {
